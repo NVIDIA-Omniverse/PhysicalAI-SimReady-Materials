@@ -24,7 +24,7 @@ A clear and concise description of what you expected to happen.
 If applicable, add screenshots to help explain your problem. Or add video with audio describing what issue you're encountering
 
 **Desktop (please complete the following information):**
- - OS: [e.g. iOS]
+ - OS: [e.g. Window 11]
  - Application version: [e.g. Maya, Houdini]
  - USD version: [e.g. chrome, safari]
  - OpenPBR version: [e.g. 22]
