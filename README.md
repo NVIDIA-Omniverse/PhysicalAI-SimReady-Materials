@@ -1,265 +1,284 @@
 # NVIDIA PhysicalAI-SimReady-Materials
 
-Welcome to the **NVIDIA PhysicalAI-SimReady-Materials** repository! This library contains an extensive collection of UsdShade-based materials that leverage OpenPBR v1.1 to provide high-quality, physically-based rendering (PBR) looks. These materials can be used in NVIDIA Omniverse™ as well as a wide range of other DCC (Digital Content Creation) applications that support USD and MaterialX.
+**NVIDIA PhysicalAI-SimReady-Materials** is an open collection of USD
+materials and textures authored with `UsdShade`, MaterialX, and OpenPBR 1.1.
+The materials are designed for NVIDIA Omniverse and for other USD-capable DCC
+applications and runtimes that support MaterialX and OpenPBR.
 
-## Table of Contents
+This repository is the public landing page for the library. To keep the Git
+repository lightweight, the material data is distributed as category archives
+from GitHub Releases instead of being checked in as individual material and
+texture files.
 
-- [NVIDIA PhysicalAI-SimReady-Materials](#nvidia-physicalai-simready-materials)
-  - [Table of Contents](#table-of-contents)
-  - [1. Overview](#1-overview)
-    - [Key Features](#key-features)
-  - [2. Repository Structure](#2-repository-structure)
-  - [3. Categories and Material Count](#3-categories-and-material-count)
-  - [4. Dependencies and Requirements](#4-dependencies-and-requirements)
-  - [5. Installation and Usage](#5-installation-and-usage)
-  - [6. Material Inheritance](#6-material-inheritance)
-  - [7. Working with Omniverse](#7-working-with-omniverse)
-  - [8. Using in Other DCCs](#8-using-in-other-dccs)
-  - [9. Contributing](#9-contributing)
-  - [10. License](#10-license)
-  - [11. Acknowledgments](#11-acknowledgments)
-  - [12. Contact](#12-contact)
+## Contents
 
----
+- [Overview](#overview)
+- [Download](#download)
+- [Package Layout](#package-layout)
+- [Categories](#categories)
+- [Requirements](#requirements)
+- [Usage](#usage)
+- [Material Inheritance](#material-inheritance)
+- [Omniverse](#omniverse)
+- [Other DCCs and Runtimes](#other-dccs-and-runtimes)
+- [Contributing](#contributing)
+- [License](#license)
+- [Acknowledgments](#acknowledgments)
+- [Contact](#contact)
 
-## 1. Overview
+## Overview
 
-This repository provides a set of high-quality materials distilled from NVIDIA's [vMaterials](https://developer.nvidia.com/vmaterials) collection. The materials here are structured into categories, each containing multiple variations. All materials are authored in USD, specifically in `UsdShade`, and adhere to the [OpenPBR v1.1 specification](https://github.com/AcademySoftwareFoundation/OpenPBR/tree/v1.1).
+The library contains 1,705 physically based materials distilled from NVIDIA
+[vMaterials](https://developer.nvidia.com/vmaterials). Materials are organized
+by category, and each category is published as a separate downloadable archive
+on the [Releases](https://github.com/NVIDIA-Omniverse/PhysicalAI-SimReady-Materials/releases)
+page.
 
 ### Key Features
 
-- **Massive Collection**: Multiple material categories for industrial and manufacturing.  
-- **High Quality**: Materials based on vMaterials, known for production-ready, physically plausible looks.  
-- **OpenPBR-based**: Fully compliant with the [OpenPBR v1.1](https://github.com/AcademySoftwareFoundation/OpenPBR/tree/v1.1) standard.  
-- **Universal**: Each material is authored in USD (`UsdShade`) and can be used across various DCC applications.  
-- **Texture Support**: All texture files are in `.jpg` format for efficient size and broad compatibility.
+- **USD-native materials**: Authored as USD `UsdShade` materials.
+- **OpenPBR-based**: Built around the
+  [OpenPBR 1.1](https://github.com/AcademySoftwareFoundation/OpenPBR/tree/v1.1)
+  material model.
+- **MaterialX shader graphs**: Uses MaterialX shader nodes for portable
+  physically based shading.
+- **Texture support**: Texture assets are provided in `.jpg` format for broad
+  compatibility and efficient download size.
+- **Simulation metadata**: Includes SimReady non-visual sensor attributes for
+  use cases such as Lidar, RADAR, and ultrasonic simulation.
 
----
+## Download
 
-## 2. Repository Structure
+Download material archives from the latest GitHub Release:
+
+[https://github.com/NVIDIA-Omniverse/PhysicalAI-SimReady-Materials/releases/latest](https://github.com/NVIDIA-Omniverse/PhysicalAI-SimReady-Materials/releases/latest)
+
+Each material category is provided as a separate `.zip` file under release
+assets. Download only the categories you need, or download all category
+archives for the complete library.
+
+If you use the GitHub CLI, the following command downloads all release `.zip`
+assets for the latest release:
 
 ```bash
-├── PhysicalAI-SimReady-Materials
-|   ├── open_pbr_uber_base_class.usda  # Root base class defining the OpenPBR material schema
-|   ├── Materials  # Material files
-│       ├── Carpet
-│       |   ├── Carpet_Woven.usda
-│       |   ├── textures
-│       |   |   ├── Carpet_Woven_normal.jpg
-│       |   |   └── ... 
-│       |   └── ...
-│       ├── Ceramic
-│       |   ├── Ceramic_Tiles_Diamond_Antique_White.usda
-│       |   ├── textures
-│       |   |   └── ... 
-│       |   └── ...
-│       │
-│       ├── Composite
-│       |   └── ...
-│       └── Concrete
-|           └── ...
-|
-|
-└── LICENSE.md
-|           
-└── README.md 
-|           
-└── SECURITY.md 
+gh release download \
+  --repo NVIDIA-Omniverse/PhysicalAI-SimReady-Materials \
+  --pattern '*.zip'
 ```
 
----
+After downloading, extract the category archives into the same destination
+directory so that their shared root package is preserved and category folders
+merge together.
 
-## 3. Categories and Material Count
+> The automatically generated GitHub "Source code" archives contain this
+> repository's documentation files, not the material library data. Use the
+> category `.zip` assets from the release.
 
-This library includes thousands of materials distributed across the following multiple categories. Given the impracticality of hosting such large files in one Github repository, each material category is provided as a separate, downloadable Asset from the [Release page](https://github.com/NVIDIA-Omniverse/PhysicalAI-SimReady-Materials/releases/latest).
+## Package Layout
 
-1. Carpet
-2. Ceramic
-3. Concrete
-4. Glass
-5. Ground
-6. Leather
-7. Liquids
-8. Masonry
-9. Metal
-10. Paint
-11. Paper
-12. Plastic
-13. Stone
+The Git repository contains documentation, license, security, contribution, and
+image files:
 
----
+```text
+.
+|-- CONTRIBUTING.md
+|-- LICENSE.md
+|-- README.md
+|-- SECURITY.md
+`-- images/
+```
 
-## 4. Dependencies and Requirements
+After extracting one or more material category archives, the material package
+uses this layout:
 
-- **[OpenPBR 1.1](https://github.com/AcademySoftwareFoundation/OpenPBR/tree/v1.1)**  
-- **[OpenUSD 24.08](https://github.com/PixarAnimationStudios/OpenUSD/tree/v24.08)**
-- **[MaterialX 1.38.10-OpenPBR](https://github.com/AcademySoftwareFoundation/MaterialX/tree/v1.38.10-OpenPBR)**  
-  
----
+```text
+PhysicalAI-SimReady-Materials/
+|-- open_pbr_uber_base_class.usda
+`-- Materials/
+    |-- Carpet/
+    |   |-- Carpet_Woven.usda
+    |   `-- textures/
+    |       `-- ...
+    |-- Ceramic/
+    |   |-- Ceramic_Tiles_Diamond_Antique_White.usda
+    |   `-- textures/
+    |       `-- ...
+    `-- ...
+```
 
-## 5. Installation and Usage
+The file `open_pbr_uber_base_class.usda` is shared by the materials. Keep it at
+the root of the extracted package and preserve the relative paths under
+`Materials/`.
 
-Download the individual material categories from the above links into a subdirectory of the project, such as `PhysicalAI-SimReady-Material`.
+## Categories
 
-Individual materials are stored in the sub-folder `Materials`, where they can be referenced into your USD Stage. 
+The current library includes the following material categories:
 
-If you are adding this library to the [Omniverse Material Browser Extension](https://docs.omniverse.nvidia.com/extensions/latest/ext_core/ext_browser-extensions/material-browser.html), you can add folders to the list of Browser Collections.
+| Category | Materials |
+| --- | ---: |
+| Carpet | 13 |
+| Ceramic | 280 |
+| Concrete | 76 |
+| Fabric | 13 |
+| Glass | 94 |
+| Ground | 64 |
+| Leather | 176 |
+| Liquids | 16 |
+| Masonry | 21 |
+| Metal | 609 |
+| Paint | 69 |
+| Paper | 10 |
+| Plastic | 146 |
+| Skin | 4 |
+| Stone | 114 |
+| **Total** | **1,705** |
+
+## Requirements
+
+- [OpenPBR 1.1](https://github.com/AcademySoftwareFoundation/OpenPBR/tree/v1.1)
+- [OpenUSD 24.08](https://github.com/PixarAnimationStudios/OpenUSD/tree/v24.08)
+- [MaterialX 1.38.10-OpenPBR](https://github.com/AcademySoftwareFoundation/MaterialX/tree/v1.38.10-OpenPBR)
+
+## Usage
+
+1. Download the desired category archives from
+   [Releases](https://github.com/NVIDIA-Omniverse/PhysicalAI-SimReady-Materials/releases/latest).
+2. Extract the archives into a common destination.
+3. Reference, sublayer, or load materials from the extracted
+   `PhysicalAI-SimReady-Materials/Materials/<Category>/` folders into your USD
+   stage.
+4. Keep the extracted package structure intact so material references to
+   textures and `open_pbr_uber_base_class.usda` continue to resolve.
+
+For example, a material can be referenced from a path like:
+
+```text
+PhysicalAI-SimReady-Materials/Materials/Fabric/Fabric_Canvas.usda
+```
+
+When copying or relocating materials, move the complete extracted package or
+preserve the same relative layout around the category folder and
+`open_pbr_uber_base_class.usda`.
+
+## Material Inheritance
+
+All materials inherit from `open_pbr_uber_base_class.usda` for consistency and
+efficiency. The base class defines the shared OpenPBR material interface,
+MaterialX shader graph, common texture mapping behavior, semantic labels, and
+SimReady non-visual sensor attributes.
+
+### Material Attributes
+
+The base class organizes inputs into the following groups:
+
+- **Base**: `base_weight`, `base_color`, `base_diffuse_roughness`,
+  `base_metalness`
+- **Specular**: `specular_weight`, `specular_color`, `specular_roughness`,
+  `specular_ior`, `specular_roughness_anisotropy`
+- **Transmission**: `transmission_weight`, `transmission_color`,
+  `transmission_depth`, `transmission_scatter`,
+  `transmission_dispersion_scale`, `transmission_abbe_number`
+- **Subsurface**: `subsurface_weight`, `subsurface_color`,
+  `subsurface_radius`, `subsurface_radius_scale`,
+  `subsurface_scatter_anisotropy`
+- **Fuzz**: `fuzz_weight`, `fuzz_color`, `fuzz_roughness`
+- **Coat**: `coat_weight`, `coat_color`, `coat_roughness`, `coat_ior`,
+  `coat_darkening`, `coat_roughness_anisotropy`, `coat_normal_scale`
+- **Thin Film**: `thin_film_weight`, `thin_film_ior`,
+  `thin_film_thickness`
+- **Emission**: `emission_luminance`, `emission_color`
+- **Geometry**: `geometry_opacity`, `geometry_thin_walled`,
+  `geometry_normal_scale`
+- **UV Controls**: `uvtiling`, `uvoffset`
+
+### Shader Graph
+
+The base material implements a MaterialX `UsdShade` shader graph using the
+OpenPBR Surface shader as the material model.
+
+- **Texture mapping**: Many parameters can be driven by texture resources.
+  `ND_tiledimage_<type>` nodes support UV tiling and offset controls.
+- **Normal mapping**: Dedicated normal map processing includes flip controls
+  for R, G, and B channels to switch between DirectX and OpenGL normal map
+  encodings.
 
 <div align="center">
-  <img src="images/material_browser.png" alt="Adding to Collections" width="75%">
+  <img src="images/shade_graph.png" alt="OpenPBR MaterialX shader graph" width="75%">
 </div>
 
-<br>
+### Semantic Labels
 
-⚠️ When migrating data, please note that materials inherit from `open_pbr_uber_base_class.usda`. It is therefore expected that when migrating any files, you move the entire material package to its new destination and reference your USD data from the root of the package.
+The base class includes semantic metadata such as:
 
----
-
-## 6. Material Inheritance
-
-All materials inherit from `open_pbr_uber_base_class.usda` for consistency and efficiency. This makes it easy to maintain and update the base material properties as things change in the OpenPBR specification.
-
-### Base Class Structure
-
-The `open_pbr_uber_base_class.usda` file defines a comprehensive OpenPBR v1.1 material class with the following key components:
-
-#### **Material Attributes**
-The class defines material input attributes organized into logical groups:
-
-- **Base**: 
-    - base_weight
-    - base_color
-    - base_diffuse_roughness
-    - base_metalness
-
-- **Specular**: 
-    - specular_weight
-    - specular_color
-    - specular_roughness
-    - specular_ior
-    - specular_roughness_anisotropy
-
-- **Transmission**: 
-    - transmission_weight
-    - transmission_color
-    - transmission_depth
-    - transmission_scatter
-    - transmission_dispersion_scale
-    - transmission_abbe_number
-
-- **Subsurface**: 
-    - subsurface_weight
-    - subsurface_color
-    - subsurface_radius
-    - subsurface_radius_scale
-    - subsurface_scatter_anisotropy
-
-- **Fuzz**: 
-    - fuzz_weight
-    - fuzz_color
-    - fuzz_roughness
-
-- **Coat**: 
-    - coat_weight
-    - coat_color
-    - coat_roughness
-    - coat_ior
-    - coat_darkening
-    - coat_roughness_anisotropy
-    - coat_normal_scale
-
-- **Thin Film**: 
-    - thin_film_weight
-    - thin_film_ior
-    - thin_film_thickness
-
-- **Emission**: 
-    - emission_luminance
-    - emission_color
-
-- **Geometry**: 
-    - geometry_opacity
-    - geometry_thin_walled
-    - geometry_normal_scale
-
-- **UV Controls**: 
-    - uvtiling
-    - uvoffset
-
-#### **Shader Graph**
-The material implements a complete MaterialX UsdShade Shader graph using OpenPBR Surface Shader as it's material model, with additional support for:
-
-- **Texture Mapping**: For many parameters we support mapping the input to a texture resource. `ND_tiledimage_<type>` nodes connect to inputs with UV tiling/offset support.
-- **Normal Mapping**: The graph has dedicated normal map processing with flip controls for R/G/B channels to conveniently switch between DirectX and OpenGL encoded mappings.
-
-<div align="center">
-  <img src="images/shade_graph.png" alt="Adding to Collections" width="75%">
-</div>
-
-<br>
-
-#### **Semantic Labels**
-The class includes semantic metadata for material identification:
 - `semantics:labels:material = ["base"]`
 - `semantics:labels:OpenPBR_Ver = ["1.1"]`
 - `semantics:labels:vMaterial_Ver = ["2.2"]`
 
-#### **Non-Visual Sensor Attributes**
-These attributes enable the simulation of non-visual sensors like Lidar, RADAR, and Ultrasonic systems by providing material properties that affect sensor response outside the visible spectrum. It allows the RTX renderer in NVIDIA Omniverse to accurately simulate sensor behavior through base material properties, surface coatings, and special attributes like retroreflectivity.
+### Non-Visual Sensor Attributes
 
-- **omni:simready:nonvisual:base**
-- **omni:simready:nonvisual:coating**
-- **omni:simready:nonvisual:attributes**
+SimReady non-visual attributes provide material properties used for sensor
+simulation outside the visible spectrum. They support Omniverse RTX sensor
+simulation workflows through:
 
+- `omni:simready:nonvisual:base`
+- `omni:simready:nonvisual:coating`
+- `omni:simready:nonvisual:attributes`
 
----
+## Omniverse
 
-## 7. Working with Omniverse
-The library is intended as a stand along library on your file system or Nucleus installation. To use the library on Nucleus we recommend:
+The library can be used from a local filesystem location or uploaded to
+Omniverse Nucleus.
 
-1. Upload the complete package to Omniverse Nucleus.  
-2. Reference, Sublayer or Load Materials into your Stage.  
-3. It is recommended that materias be referenced into a hierarchy, similar to `/World/Looks` or `/World/Materials` to follow best practices.
-4. Like otehr material workflows in Omniverse you can Edit & author Override opinions on any material parameters.
+Recommended workflow:
 
-If working with the Material Browser Extension, add the library's `Collection` folder to the list of Browser Collections.
+1. Extract the required category archives.
+2. Upload or mount the complete extracted package.
+3. Reference, sublayer, or load materials into a USD stage.
+4. Place referenced materials under a hierarchy such as `/World/Looks` or
+   `/World/Materials`.
+5. Author override opinions on material parameters as needed.
 
----
+To browse the extracted library in the Omniverse Material Browser Extension,
+add the extracted `PhysicalAI-SimReady-Materials/Materials` folder, or selected
+category folders, to the browser collections.
 
-## 8. Support in Other DCCs and Runtimes
+<div align="center">
+  <img src="images/material_browser.png" alt="Adding material folders to Omniverse Material Browser collections" width="75%">
+</div>
 
-- **NVIDIA Omniverse RTX in Omniverse Kit SDK and Sensor RTX API**  
-- **Pixar USD**
-- **Autodesk Maya**  
-- **SideFX Houdini**
-- **Other Tools**  
+## Other DCCs and Runtimes
 
----
+The materials are intended for USD and MaterialX-capable tools and runtimes,
+including:
 
-## 9. Contributing
+- NVIDIA Omniverse RTX in Omniverse Kit SDK and Sensor RTX API
+- Pixar USD
+- Autodesk Maya
+- SideFX Houdini
+- Other USD-capable tools
 
-Please see our [Contributing Guidelines](CONTRIBUTING.md) for information on how to contribute to this project.
+## Contributing
 
----
+Please see [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
 
-## 10. License
+## License
 
-The materials and textures are licensed permissively under the [MIT-0 License.](LICENSE.md)
+The materials and textures are licensed under the [MIT-0 License](LICENSE.md).
 
----
+## Acknowledgments
 
-## 11. Acknowledgments
+- [Academy Software Foundation](https://www.aswf.io/) for
+  [OpenPBR](https://github.com/AcademySoftwareFoundation/OpenPBR)
+- [Academy Software Foundation](https://www.aswf.io/) for
+  [MaterialX](https://github.com/AcademySoftwareFoundation/MaterialX)
+- [Pixar and AOUSD](https://aousd.org/) for
+  [OpenUSD](https://github.com/PixarAnimationStudios/OpenUSD)
+- [NVIDIA](https://www.nvidia.com/) for
+  [vMaterials](https://developer.nvidia.com/vmaterials)
+- [NVIDIA Omniverse](https://www.nvidia.com/en-us/omniverse/)
 
-- **Academy Software Foundation** for [OpenPBR](https://github.com/AcademySoftwareFoundation/OpenPBR).  
-- **Academy Software Foundation** for [MaterialX](https://github.com/AcademySoftwareFoundation/MaterialX).  
-- **Pixar and AOUSD** for [OpenUSD](https://aousd.org/).
-- **NVIDIA** for [vMaterials](https://developer.nvidia.com/vmaterials).  
-- **NVIDIA** for [Omniverse](https://www.nvidia.com/en-us/omniverse/).
+## Contact
 
----
+For questions, open an issue in this repository:
 
-## 12. Contact
-
-For inquiries, open an issue in this repository or reach out via the [issue tracker](https://github.com/NVIDIA-Omniverse/PhysicalAI-SimReady-Materials/issues).
-
-Thank you for your support.
+[https://github.com/NVIDIA-Omniverse/PhysicalAI-SimReady-Materials/issues](https://github.com/NVIDIA-Omniverse/PhysicalAI-SimReady-Materials/issues)
